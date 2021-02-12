@@ -61,4 +61,4 @@ for(var i = 0; i< players.length; i++){
 }
 
 
-console.log(players);
+console.log(Math.floor(Math.random() * Math.floor(11)));
