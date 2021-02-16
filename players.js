@@ -1,64 +1,108 @@
 var players = [{
 	"name": "bart",
-	"img": "bart.jpg"
+	"img": "img/bart.jpg"
 },
 
 {
 	"name": "christian",
-	"img": "christian.jpg"
+	"img": "img/christian.jpg"
 },
 
 {
 	"name": "eric",
-	"img": "eric.jpg"
+	"img": "img/eric.jpg"
 },
 
 {
 	"name": "jens",
-	"img": "jens.jpg"
+	"img": "img/jens.jpg"
 },
 
 {
 	"name": "justin",
-	"img": "justin.jpg"
+	"img": "img/justin.jpg"
 },
 
 {
 	"name": "mark",
-	"img": "mark.jpg"
+	"img": "img/mark.jpg"
 },
 
 {
 	"name": "marcos",
-	"img": "marcos.jpg"
+	"img": "img/marcos.jpg"
 },
 
 {
 	"name": "nicolai",
-	"img": "nicolai.jpg"
+	"img": "img/nicolai.jpg"
 },
 
 {
 	"name": "steven",
-	"img": "steven.jpg"
+	"img": "img/steven.jpg"
 },
 
 {
 	"name": "tyrell",
-	"img": "tyrell.jpg"
+	"img": "img/tyrell.jpg"
 },
 
 {
 	"name": "uros",
-	"img": "uros.jpg"
+	"img": "img/uros.jpg"
 },
 ];
 
-for(var i = 0; i< players.length; i++){
-	players[i]	
+var selectedImgId;
+var selectedName;
 
-	console.log(players[i]);
+const player = document.querySelectorAll(".players");
+const namePlayer = document.querySelectorAll(".namePlayer")
+
+player.forEach(player => {
+	player.onclick = function(){ selectIMG(player.id); }
+	console.log(player.id);
+});
+
+//gives border to the images
+function selectIMG(id){
+	if (selectedImgId == undefined) {
+		document.getElementById(id).classList.add("borders");
+		selectedImgId = id;
+	}else{
+		document.getElementById(selectedImgId).classList.remove("borders");
+		document.getElementById(id).classList.add("borders");
+		selectedImgId = id;
+	}
 }
 
+namePlayer.forEach(namePlayer => {
+	namePlayer.onclick = function(){ selectIMG(namePlayer.id); }
+	console.log(namePlayer.id);
+});
 
-console.log(Math.floor(Math.random() * Math.floor(11)));
+//gives border to the names
+function selectedName(id){
+	if (selectedName == undefined) {
+		document.getElementById(id).classList.add("bordersName");
+		selectedName = id;
+	}else{
+		document.getElementById(selectedName).classList.remove("bordersName");
+		document.getElementById(id).classList.add("bordersName");
+		selectedName = id;
+	}
+}
+
+var count = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+for (var i=0; i<players.length; i++){
+	var random = count[Math.floor(Math.random() * count.length)];
+	var countCheck = count.indexOf(random);
+	count.splice(countCheck, 1);
+
+	document.getElementById("img-"+i).src= players[random].img;
+}
+
+ 
+

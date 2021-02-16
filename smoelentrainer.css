@@ -3,11 +3,21 @@
 	margin-left: 300px;
 }
 
-#names span{
+#names button{
     margin:0;
     padding:0;
-    margin-left: 5px;
+    margin-left: 10px;
     font-size: 36px;
     display: inline;
     line-height: 220px;
+}
+
+.borders{
+	outline: 2px solid white;
+	outline-offset: -2px;
+}
+
+.bordersName{
+	outline: 2px solid white;
+	outline-offset: -2px;
 }
