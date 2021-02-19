@@ -64,20 +64,24 @@ const namePlayer = document.querySelectorAll(".namePlayer");
 
 
 player.forEach(player => {
+	//onclick for player
 	player.onclick = function(){ selectIMG(player.id); }
 });
 
 namePlayer.forEach(namePlayer => {
+	//onclick for player name
 	namePlayer.onclick = function(){ selectName(namePlayer.id); }
 });
 
 //gives border to the images
 function selectIMG(id){
 	if (selectedImg == undefined) {
+		//gives white border to selected player
 		document.getElementById(id).classList.add("borders");
 		selectedImg = id;
 		checkImg = document.getElementById(id).src;
 	}else{
+		//removes border when another player or name is selected
 		document.getElementById(selectedImg).classList.remove("borders");
 		document.getElementById(id).classList.add("borders");
 		selectedImg = id;
@@ -117,22 +121,46 @@ for (var i=0; i<players.length; i++){
 
 
 //checks if image matches with the name or if the name matches with the image
+var score = 0;
+var tries = 0;
 function checkMatch(){
 	var checkNoMatch;
 
 	if (checkImg != undefined && checkName != undefined) {
+
+		tries++;
+		document.getElementById("tries").innerHTML = tries;
+
 		for (var i=0; i < players.length; i++){
 			if(players[i].img === checkImg && players[i].name === checkName){
-				console.log("yea");
+				//gives green border when matched
+				//also makes the image and name fade away
 				checkNoMatch = false;
+				document.getElementById(selectedImg).classList.add("goodBorder");
+				document.getElementById(selectedImg).onclick = null;
+
+
+				document.getElementById(selectedName).classList.add("goodBorder");
+				document.getElementById(selectedName).onclick = null;
+				
+				score++;
+				document.getElementById("score").innerHTML = score;
+
+				checkImg = undefined;
+				checkName = undefined;
+				return;
 			}else{
-				console.log("nah");
 				checkNoMatch = true;
 			}
 		}
 	}
-	if (checkNoMatch = true){
-		alert("test");
+	if (checkNoMatch == true){
+		//gives red border when wrong
+		document.getElementById(selectedImg).classList.add("wrongBorder");
+		document.getElementById(selectedName).classList.add("wrongBorder");
+		document.getElementById(selectedImg).classList.remove("borders");
+		document.getElementById(selectedName).classList.remove("bordersName");
+		alert("You got it wrong fam");
 	}
 }
 
@@ -143,7 +171,9 @@ var width = 100;
 var barAmount = Number(width/timeleft);
 var downloadTimer = setInterval(function(){
   if(timeleft <= 0){
+  	alert("You lose");
     clearInterval(downloadTimer);
+    document.getElementById("progressBar").style.display = "none";
   }
   width = width - barAmount;
   document.getElementById("progressBar").value = 120 - timeleft;
