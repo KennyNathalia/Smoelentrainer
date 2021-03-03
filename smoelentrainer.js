@@ -1,8 +1,16 @@
-const green = document.querySelector('.green');
+const start = document.querySelector('.start');
 
-function random(number) {
-  return Math.floor(Math.random() * (number+1));
+start.onclick = function(){
+	window.location.assign('players.html');
 }
+
+const settings = document.querySelector('.settings');
+
+settings.onclick = function(){
+	window.location.assign('settings.html');
+}
+
+const green = document.querySelector('.green');
 
 green.onclick = function() {
   const rndCol = '#008000';
@@ -10,23 +18,18 @@ green.onclick = function() {
 }
 
 const red = document.querySelector('.red');
-
-function random(number) {
-  return Math.floor(Math.random() * (number+1));
-}
-
-red.onclick = function() {
+ 
+red.onclick = function random(number) {
   const rndCol = '#FF0000';
   document.body.style.backgroundColor = rndCol;
 }
 
 const blue = document.querySelector('.blue');
 
-function random(number) {
-  return Math.floor(Math.random() * (number+1));
-}
-
 blue.onclick = function() {
   const rndCol = '#00BFFF';
   document.body.style.backgroundColor = rndCol;
 }
+
+
+localStorage.setItem('bgcolor', 'red');
