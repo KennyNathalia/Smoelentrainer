@@ -54,11 +54,15 @@ var players = [{
 },
 ];
 
+var playersSet = localStorage.getItem('playersSet');
+let playerAmount = [];
+
 var selectedImg;
 var selectedName;
 var checkImg;
 var checkName;
-var count = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var countImg = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var countName = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const player = document.querySelectorAll(".players");
 const namePlayer = document.querySelectorAll(".namePlayer");
 
@@ -111,11 +115,20 @@ function selectName(id){
 
 //Randomizes the position of the players and names
 for (var i=0; i<players.length; i++){
-	var random = count[Math.floor(Math.random() * count.length)];
-	var countCheck = count.indexOf(random);
-	count.splice(countCheck, 1);
+	//images
+	var random = countImg[Math.floor(Math.random() * countImg.length)];
+	var countCheck = countImg.indexOf(random);
+	countImg.splice(countCheck, 1);
 
 	document.getElementById("img-"+i).src= players[random].img;
+}
+
+for (var i=0; i<players.length; i++){
+	//names
+	var random = countName[Math.floor(Math.random() * countName.length)];
+	var countCheck = countName.indexOf(random);
+	countName.splice(countCheck, 1);
+
 	document.getElementById("btn-"+i).innerHTML= players[random].name;
 }
 
@@ -160,16 +173,23 @@ function checkMatch(){
 		document.getElementById(selectedName).classList.add("wrongBorder");
 		document.getElementById(selectedImg).classList.remove("borders");
 		document.getElementById(selectedName).classList.remove("bordersName");
-		alert("You got it wrong fam");
+		//alert("You got it wrong fam");
 	}
 }
 
 
 //2 min timer
 var timeleft = 120;
+var gameTime = localStorage.getItem('gameTime');
+
+if(gameTime != null){
+	timeleft = gameTime;
+}
+
 var width = 100;
 var barAmount = Number(width/timeleft);
 var downloadTimer = setInterval(function(){
+	document.getElementById("countdown").innerHTML = timeleft;
   if(timeleft <= 0){
   	alert("You lose");
     clearInterval(downloadTimer);

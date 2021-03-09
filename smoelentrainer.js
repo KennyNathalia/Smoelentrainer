@@ -1,3 +1,4 @@
+//pages
 const start = document.querySelector('.start');
 
 start.onclick = function(){
@@ -10,6 +11,8 @@ settings.onclick = function(){
 	window.location.assign('settings.html');
 }
 
+
+//colors
 const green = document.querySelector('.green');
 
 green.onclick = function() {
@@ -17,12 +20,16 @@ green.onclick = function() {
   document.body.style.backgroundColor = rndCol;
 }
 
+//localStorage.setItem("green", green);
+
 const red = document.querySelector('.red');
  
-red.onclick = function random(number) {
+red.onclick = function() {
   const rndCol = '#FF0000';
   document.body.style.backgroundColor = rndCol;
 }
+
+//localStorage.setItem("red", red);
 
 const blue = document.querySelector('.blue');
 
@@ -31,5 +38,4 @@ blue.onclick = function() {
   document.body.style.backgroundColor = rndCol;
 }
 
-
-localStorage.setItem('bgcolor', 'red');
+//localStorage.setItem("blue", blue);
