@@ -6,11 +6,11 @@ function submit(){
 	var formValue = document.forms.form;
 	var formData = new FormData(formValue);
 	var time = formData.get("timer");
-	var players = formData.get("players");
-	console.log(players);
+	var playersSet = formData.get("players");
+	console.log(playersSet);
 	//console.log(time);
 	localStorage.setItem('gameTime', time);	
-	localStorage.setItem('playersSet', players);
+	localStorage.setItem('playersSet', playersSet);
 	window.location.assign('smoelentrainer.html');
 }
 
